@@ -18,7 +18,7 @@ class AuthTests(APITestCase):
 
     def test_user_auth(self):
         auth_uri = reverse('token_obtain_pair')
-        user = AuthMocker.generate_random_user()
+        user, password = AuthMocker.generate_random_user()
         user.save()
-        response = self.client.post(auth_uri, {"username": user.username, "password": user.password})
+        response = self.client.post(auth_uri, {"username": user.username, "password": password})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
