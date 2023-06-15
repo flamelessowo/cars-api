@@ -13,6 +13,7 @@ BODY_STYLES = (
 
 
 class Brand(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(blank=False, null=False, max_length=100)
     headquarters_country = models.CharField(blank=False, null=False, max_length=56)
 
@@ -25,6 +26,7 @@ class Brand(models.Model):
 
 
 class Model(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(blank=False, null=False, max_length=100)
     year_of_issue = models.PositiveIntegerField(blank=False, null=False, validators=[MaxValueValidator(2050)])
     body_style = models.CharField(blank=False, null=False, choices=BODY_STYLES, max_length=100)
@@ -38,6 +40,7 @@ class Model(models.Model):
 
 
 class Car(models.Model):
+    id = models.AutoField(primary_key=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     model = models.ForeignKey(Model, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=19, decimal_places=2)
