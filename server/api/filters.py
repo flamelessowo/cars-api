@@ -11,6 +11,12 @@ class CarFilter(django_filters.FilterSet):
     mileage_min = django_filters.NumberFilter(field_name="mileage", lookup_expr="gt")
     mileage_max = django_filters.NumberFilter(field_name="mileage", lookup_expr="lt")
 
+    brand_name = django_filters.CharFilter(field_name="brand__name")
+    brand_headquarters_country = django_filters.CharFilter(
+        field_name="brand__headquarters_country"
+    )
+
+    model_name = django_filters.CharFilter(field_name="model__name")
     year_of_issue = django_filters.NumberFilter(field_name="model__year_of_issue")
     year_of_issue_min = django_filters.NumberFilter(
         field_name="model__year_of_issue", lookup_expr="gt"

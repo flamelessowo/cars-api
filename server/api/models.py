@@ -18,14 +18,14 @@ FUEL_TYPES = (
     ("ethanol", "Ethanol"),
     ("cng", "CNG"),
     ("lpg", "LPG"),
-    ("hydrogen", "Hydrogen")
+    ("hydrogen", "Hydrogen"),
 )
 
 TRANSMISSION_TYPES = (
     ("manual", "Manual"),
     ("automatic", "Automatic"),
     ("cvt", "CVT"),
-    ("semi-automatic", "Semi-Automatic")
+    ("semi-automatic", "Semi-Automatic"),
 )
 
 
@@ -67,8 +67,12 @@ class Car(models.Model):
     )
     exterior_color = models.CharField(blank=False, null=False, max_length=30)
     interior_color = models.CharField(blank=False, null=False, max_length=30)
-    fuel_type = models.CharField(blank=False, null=False, choices=FUEL_TYPES, max_length=30)
-    transmission = models.CharField(blank=False, null=False, choices=TRANSMISSION_TYPES, max_length=50)
+    fuel_type = models.CharField(
+        blank=False, null=False, choices=FUEL_TYPES, max_length=30
+    )
+    transmission = models.CharField(
+        blank=False, null=False, choices=TRANSMISSION_TYPES, max_length=50
+    )
     engine = models.CharField(blank=False, null=False, max_length=50)
     on_sale = models.BooleanField(blank=False, null=False, default=False)
 
