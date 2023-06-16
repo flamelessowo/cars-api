@@ -9,16 +9,26 @@ fake = Faker()
 
 class AuthTests(APITestCase):
     def test_create_user(self):
-        register_uri = reverse('user_register')
+        register_uri = reverse("user_register")
         username = fake.user_name()
         password = fake.password()
         email = fake.email()
-        response = self.client.post(register_uri, {"username": username, "password": password, "confirm_password": password, "email": email})
+        response = self.client.post(
+            register_uri,
+            {
+                "username": username,
+                "password": password,
+                "confirm_password": password,
+                "email": email,
+            },
+        )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_user_auth(self):
-        auth_uri = reverse('token_obtain_pair')
+        auth_uri = reverse("token_obtain_pair")
         user = AuthMocker.generate_random_user()
         user.save()
-        response = self.client.post(auth_uri, {"username": user.username, "password": user.password})
+        response = self.client.post(
+            auth_uri, {"username": user.username, "password": user.password}
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)

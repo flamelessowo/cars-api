@@ -6,56 +6,112 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Brand',
+            name="Brand",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('headquarters_country', models.CharField(max_length=56)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("headquarters_country", models.CharField(max_length=56)),
             ],
             options={
-                'verbose_name': 'Brand',
-                'verbose_name_plural': 'Brands',
+                "verbose_name": "Brand",
+                "verbose_name_plural": "Brands",
             },
         ),
         migrations.CreateModel(
-            name='Model',
+            name="Model",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('year_of_issue', models.PositiveIntegerField(validators=[django.core.validators.MaxValueValidator(2050)])),
-                ('body_style', models.CharField(choices=[('sedan', 'Sedan'), ('hatchback', 'HatchBack'), ('liftback', 'Liftback'), ('coupe', 'Coupe'), ('crossover', 'Crossover'), ('truck', 'Truck'), ('wagon', 'Wagon')], max_length=100)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                (
+                    "year_of_issue",
+                    models.PositiveIntegerField(
+                        validators=[django.core.validators.MaxValueValidator(2050)]
+                    ),
+                ),
+                (
+                    "body_style",
+                    models.CharField(
+                        choices=[
+                            ("sedan", "Sedan"),
+                            ("hatchback", "HatchBack"),
+                            ("liftback", "Liftback"),
+                            ("coupe", "Coupe"),
+                            ("crossover", "Crossover"),
+                            ("truck", "Truck"),
+                            ("wagon", "Wagon"),
+                        ],
+                        max_length=100,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Model',
-                'verbose_name_plural': 'Models',
+                "verbose_name": "Model",
+                "verbose_name_plural": "Models",
             },
         ),
         migrations.CreateModel(
-            name='Car',
+            name="Car",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('price', models.DecimalField(decimal_places=2, max_digits=19)),
-                ('mileage', models.PositiveIntegerField(validators=[django.core.validators.MaxValueValidator(10000000)])),
-                ('exterior_color', models.CharField(max_length=30)),
-                ('interior_color', models.CharField(max_length=30)),
-                ('fuel_type', models.CharField(max_length=30)),
-                ('transmission', models.CharField(max_length=50)),
-                ('engine', models.CharField(max_length=50)),
-                ('on_sale', models.BooleanField(default=False)),
-                ('brand', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.brand')),
-                ('model', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.model')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("price", models.DecimalField(decimal_places=2, max_digits=19)),
+                (
+                    "mileage",
+                    models.PositiveIntegerField(
+                        validators=[django.core.validators.MaxValueValidator(10000000)]
+                    ),
+                ),
+                ("exterior_color", models.CharField(max_length=30)),
+                ("interior_color", models.CharField(max_length=30)),
+                ("fuel_type", models.CharField(max_length=30)),
+                ("transmission", models.CharField(max_length=50)),
+                ("engine", models.CharField(max_length=50)),
+                ("on_sale", models.BooleanField(default=False)),
+                (
+                    "brand",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="api.brand"
+                    ),
+                ),
+                (
+                    "model",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="api.model"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Car',
-                'verbose_name_plural': 'Cars',
+                "verbose_name": "Car",
+                "verbose_name_plural": "Cars",
             },
         ),
     ]

@@ -9,17 +9,19 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserModel
-        fields = ['id', 'email', 'username', 'password', 'confirm_password']
+        fields = ["id", "email", "username", "password", "confirm_password"]
 
     def create(self, validated_data: dict):
-        password = validated_data['password']
+        password = validated_data["password"]
 
-        if (password != validated_data['confirm_password']):
-            raise serializers.ValidationError('Password and password confirmation do not match.')
+        if password != validated_data["confirm_password"]:
+            raise serializers.ValidationError(
+                "Password and password confirmation do not match."
+            )
 
-        user = UserModel.objects.create(email=validated_data.get('email', ''),
-                                        username=validated_data['username']
-                                        )
+        user = UserModel.objects.create(
+            email=validated_data.get("email", ""), username=validated_data["username"]
+        )
         user.set_password(password)
         user.save()
         return user

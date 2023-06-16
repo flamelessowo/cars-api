@@ -12,8 +12,8 @@ class BrandListView(ListAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    filterset_fields = '__all__'
-    search_fields = ['name']
+    filterset_fields = "__all__"
+    search_fields = ["name"]
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
@@ -23,8 +23,8 @@ class ModelListView(ListAPIView):
     serializer_class = ModelSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = ModelFilter
-    filterset_fields = '__all__'
-    search_fields = ['name']
+    filterset_fields = "__all__"
+    search_fields = ["name"]
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
@@ -33,13 +33,13 @@ class CarListView(ListAPIView):
     serializer_class = CarSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = CarFilter
-    filterset_fields = '__all__'
-    search_fields = ['model__name', 'brand__name']
+    filterset_fields = "__all__"
+    search_fields = ["model__name", "brand__name"]
     permission_classes = [permissions.IsAuthenticated]
     authentication_classes = [JWTAuthentication]
 
     def get_queryset(self):
-        on_sale = self.kwargs.get('on_sale')
-        if (on_sale):
+        on_sale = self.kwargs.get("on_sale")
+        if on_sale:
             return Car.objects.filter(on_sale=on_sale)
         return Car.objects.all()
